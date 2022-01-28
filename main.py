@@ -5,7 +5,7 @@ import json
 
 BROKER_ADDRESS = "demo.thingsboard.io"
 PORT = 1883
-THINGS_BOARD_ACCESS_TOKEN = ""
+THINGS_BOARD_ACCESS_TOKEN = "hJsDUniRDn1VSbgUj8Hq"
 
 
 def subscribed(client, userdata, mid, granted_qos):
@@ -44,12 +44,12 @@ client.on_message = recv_message
 
 temp = 30
 humi = 50
-light_intesity = 100
+longitude = 106.6297
+latitude =  10.8231
 counter = 0
 while True:
-    collect_data = {'temperature': temp, 'humidity': humi, 'light':light_intesity}
+    collect_data = {'temperature': temp, 'humidity': humi, 'longitude': longitude,  'latitude': latitude}
     temp += 1
     humi += 1
-    light_intesity += 1
     client.publish('v1/devices/me/telemetry', json.dumps(collect_data), 1)
     time.sleep(10)
